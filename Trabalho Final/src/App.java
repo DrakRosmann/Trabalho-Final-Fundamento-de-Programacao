@@ -6,6 +6,7 @@ public class App {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         List<Evento> eventos = new ArrayList<Evento>();
+        List<Sala> salas = new ArrayList<Sala>();
         System.out.println("-----------");
         int p=0;
         do{
@@ -20,7 +21,7 @@ public class App {
                 case 3:
 
                 case 4:
-
+                    salas.add(adicionarSala());
                 case 5:
             }
             System.out.print("Deseja realizar mais alguma ação (1-Sim | 2-Não)? ");
@@ -29,12 +30,13 @@ public class App {
     }
 
     public static void menu(){
-        System.out.println("App Eventos.");
+        System.out.println("App CorpUp Eventos.");
         System.out.println("1. Criar Evento.");
         System.out.println("2. Listar Evento.");
         System.out.println("3. Excluir Evento.");
-        System.out.println("4. Remover sala de evento.");
-        System.out.println("5. Remover inscrito de evento.");
+        System.out.println("4. Adicionar sala.");
+        System.out.println("5. Remover sala de evento.");
+        System.out.println("6. Remover inscrito de evento.");
         System.out.print("Sel: ");
     }
 
@@ -78,4 +80,15 @@ public class App {
         return new Inscritos(nome,cat,cpf,cargo,instituicao);
     }
 
+    public static Sala adicionarSala(){
+        Scanner in = new Scanner(System.in);
+        System.out.print("Local: ");
+        String local = in.nextLine();
+        in.next();
+        System.out.print("Locação maxima: ");
+        int locacao = in.nextInt();
+        System.out.print("Valor da locação: ");
+        double valor = in.nextDouble();
+        return new Sala(local,locacao,valor);
+    }
 }
