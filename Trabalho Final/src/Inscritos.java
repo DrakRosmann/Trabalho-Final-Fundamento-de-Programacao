@@ -1,13 +1,14 @@
 public class Inscritos {
     int id=0;
     String nome;
-    String cat;
+    int cat;
+    String cat_nome;
     double preco;
     String cpf;
     String cargo;
     String institucao;
 
-    public Inscritos(String nome, String cat, String cpf, String cargo, String institucao) {
+    public Inscritos(String nome, int cat, String cpf, String cargo, String institucao) {
         id++;
         this.nome = nome;
         this.cat = cat;
@@ -32,11 +33,15 @@ public class Inscritos {
         this.nome = nome;
     }
 
-    public String getCat() {
+    public int getCat() {
         return cat;
     }
 
-    public void setCat(String cat) {
+    public String getCat_nome() {
+        return cat_nome;
+    }
+
+    public void setCat(int cat) {
         this.cat = cat;
     }
 
@@ -46,14 +51,17 @@ public class Inscritos {
 
     public void setPreco() {
         switch (cat){
-            case "Funcionario":
+            case 1:
                 preco = 200;
+                cat_nome="Funcionário";
                 break;
-            case "Aluno":
+            case 2:
                 preco = 300;
+                cat_nome="Aluno";
                 break;
-            case "Professor":
+            case 3:
                 preco = 150;
+                cat_nome="Professor";
                 break;
         }
     }

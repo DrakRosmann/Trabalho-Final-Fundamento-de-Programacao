@@ -11,6 +11,7 @@ public class Evento {
     int quantSalas;
     Sala[] sala;
     int indexSala;
+    int indexInscritos;
     Inscritos[] inscritos;
 
     public Evento(String nome,int tipo, int quantSalas, String dataInicio, String dataFinal, int quantInsc) {
@@ -31,6 +32,7 @@ public class Evento {
         }
         sala = new Sala[quantSalas];
         indexSala = 0;
+        indexInscritos = 0;
         inscritos = new Inscritos[quantInsc];
     }
 
@@ -93,6 +95,11 @@ public class Evento {
     public void addSala(Sala sl,int quant) {
         sala[indexSala] = sl;
         indexSala++;
+    }
+
+    public void addIncritos(Inscritos ins){
+        inscritos[indexInscritos] = ins;
+        indexInscritos++;
     }
 
     public void removeSala(int id){
