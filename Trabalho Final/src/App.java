@@ -23,7 +23,7 @@ public class App {
         System.out.print("Sel: ");
     }
 
-    public static void criarEvento(){
+    public static Evento criarEvento(){
         Scanner in = new Scanner(System.in);
         System.out.print("Nome do evento: ");
         String nome = in.nextLine();
@@ -45,6 +45,7 @@ public class App {
         }
         System.out.printf("\nEvento de numero %d criado com sucesso.",evento.getCodigo());
         System.out.printf("\nValor total por inscrito: %.1f",evento.valorTotalIncritos());
+        return evento;
     }
 
     public static Inscritos adicionarInscritos(){
