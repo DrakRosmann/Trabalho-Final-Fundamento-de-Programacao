@@ -63,8 +63,7 @@ public class App {
         String cargo = in.next();
         System.out.print("Instituição: ");
         String instituicao = in.next();
-        Inscritos inscritos = new Inscritos(nome,cat,cpf,cargo,instituicao);
-        return inscritos;
+        return new Inscritos(nome,cat,cpf,cargo,instituicao);
     }
 
 }
