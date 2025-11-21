@@ -10,7 +10,6 @@ public class Inscritos {
     public Inscritos(String nome, int cat, String cpf, String cargo, String institucao) {
         id++;
         this.nome = nome;
-        this.cat = cat;
         this.cpf = cpf;
         this.cargo = cargo;
         this.institucao = institucao;
@@ -46,15 +45,12 @@ public class Inscritos {
         this.nome = nome;
     }
 
-    public int getCat() {
+    public String getCat() {
         return cat;
     }
 
-    public String getCat_nome() {
-        return cat_nome;
-    }
 
-    public void setCat(int cat) {
+    public void setCat(String cat) {
         this.cat = cat;
     }
 
