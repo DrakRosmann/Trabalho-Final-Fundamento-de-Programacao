@@ -120,10 +120,7 @@ public class Evento {
 
     public boolean pessoaEvento(String nome){
         for (Inscritos ins : inscritos){
-            if(ins.getNome().equals(nome)){
-                return true;
-            }
-            else return false;
+            return ins.getNome().equals(nome);
         }
         return false;
     }
