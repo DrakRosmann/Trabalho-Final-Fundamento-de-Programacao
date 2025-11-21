@@ -29,9 +29,9 @@ public class App {
         String nome = in.nextLine();
         System.out.print("Tipo de evento:\n1-Congresso;\n2-Feira;\n3-Seminario\nSel:  ");
         int tipoEvento = in.nextInt();
-        System.out.print("Data de inicio(ano-mês-dia): ");
+        System.out.print("Data de inicio(aaaa-mm-dd): ");
         String dataInicio = in.next();
-        System.out.print("Data de fim(ano-mês-dia): ");
+        System.out.print("Data de fim(aaaa-mm-dd): ");
         String dataFim = in.next();
         System.out.print("Quantidade de salas necessarias: ");
         int quantidade = in.nextInt();
