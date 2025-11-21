@@ -5,22 +5,27 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        menu();
-        int sel = in.nextInt();
         List<Evento> eventos = new ArrayList<Evento>();
         System.out.println("-----------");
-        switch (sel){
-            case 1:
-                eventos.add(criarEvento());
-                break;
-            case 2:
+        int p=0;
+        do{
+            menu();
+            int sel = in.nextInt();
+            switch (sel){
+                case 1:
+                    eventos.add(criarEvento());
+                    break;
+                case 2:
 
-            case 3:
+                case 3:
 
-            case 4:
+                case 4:
 
-            case 5:
-        }
+                case 5:
+            }
+            System.out.print("Deseja realizar mais alguma ação (1-Sim | 2-Não)? ");
+            p = in.nextInt();
+        }while (p == 1);
     }
 
     public static void menu(){
