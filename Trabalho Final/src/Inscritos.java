@@ -1,8 +1,7 @@
 public class Inscritos {
     int id=0;
     String nome;
-    int cat;
-    String cat_nome;
+    String cat;
     double preco;
     String cpf;
     String cargo;
@@ -18,15 +17,15 @@ public class Inscritos {
         switch (cat){
             case 1:
                 preco = 200;
-                cat_nome="Funcionário";
+                this.cat="Funcionário";
                 break;
             case 2:
                 preco = 300;
-                cat_nome="Aluno";
+                this.cat="Aluno";
                 break;
             case 3:
                 preco = 150;
-                cat_nome="Professor";
+                this.cat="Professor";
                 break;
         }
     }
