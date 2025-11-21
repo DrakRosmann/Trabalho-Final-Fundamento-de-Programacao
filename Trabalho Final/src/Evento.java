@@ -100,8 +100,9 @@ public class Evento {
 
     public void removeSala(int id){
         for (Sala sl: sala){
-            if (sl.getId() == id){
+            if (sl.getId() == id) {
                 sala[indexSala] = null;
+                break;
             }
         }
     }
