@@ -13,6 +13,13 @@ public class App {
             case 1:
                 eventos.add(criarEvento());
                 break;
+            case 2:
+
+            case 3:
+
+            case 4:
+
+            case 5:
         }
     }
 
