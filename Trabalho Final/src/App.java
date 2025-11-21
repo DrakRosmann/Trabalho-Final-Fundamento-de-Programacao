@@ -22,6 +22,7 @@ public class App {
 
                 case 4:
                     salas.add(adicionarSala());
+                    break;
                 case 5:
             }
             System.out.print("Deseja realizar mais alguma ação (1-Sim | 2-Não)? ");
