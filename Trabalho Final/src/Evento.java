@@ -106,6 +106,13 @@ public class Evento {
         }
     }
 
+    public void removeInscrito(int id){
+        for (Inscritos sl: inscritos){
+            if (sl.getId() == id){
+                sala[indexSala] = null;
+            }
+        }
+    }
     public Sala[] salaLoc(int quant){
         Sala[] vet = new Sala[quantSalas];
         int i=0;
