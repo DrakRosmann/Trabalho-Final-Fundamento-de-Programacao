@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -5,10 +7,11 @@ public class App {
         Scanner in = new Scanner(System.in);
         menu();
         int sel = in.nextInt();
+        List<Evento> eventos = new ArrayList<Evento>();
         System.out.println("-----------");
         switch (sel){
             case 1:
-                criarEvento();
+                eventos.add(criarEvento());
                 break;
         }
     }
