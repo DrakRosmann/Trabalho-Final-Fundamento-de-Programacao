@@ -5,6 +5,7 @@ public class App {
         Scanner in = new Scanner(System.in);
         menu();
         int sel = in.nextInt();
+        System.out.println("-----------");
         switch (sel){
             case 1:
                 criarEvento();
@@ -38,8 +39,12 @@ public class App {
         int quantidadeInscritos = in.nextInt();
         Evento evento = new Evento(nome,tipoEvento,quantidade,dataInicio,dataFim,quantidadeInscritos);
         for (int i=0;i<quantidadeInscritos;i++){
+            System.out.println("Adicionar inscrito numero "+(i+1)+":");
+            System.out.println("---------");
             evento.addIncritos(adicionarInscritos());
         }
+        System.out.printf("\nEvento de numero %d criado com sucesso.",evento.getCodigo());
+        System.out.printf("\nValor total por inscrito: %.1f",evento.valorTotalIncritos());
     }
 
     public static Inscritos adicionarInscritos(){
@@ -49,12 +54,13 @@ public class App {
         System.out.print("Categoria da inscrição:\n1-Funcionario(R$200)\n2-Aluno(R$300)\n3-Professor(R$150)\nSel: ");
         int cat = in.nextInt();
         System.out.print("CPF: ");
-        String cpf = in.nextLine();
+        String cpf = in.next();
         System.out.print("Cargo: ");
-        String cargo = in.nextLine();
+        String cargo = in.next();
         System.out.print("Instituição: ");
-        String instituicao = in.nextLine();
+        String instituicao = in.next();
         Inscritos inscritos = new Inscritos(nome,cat,cpf,cargo,instituicao);
         return inscritos;
     }
+
 }

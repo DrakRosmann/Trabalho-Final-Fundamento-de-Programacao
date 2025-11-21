@@ -15,6 +15,20 @@ public class Inscritos {
         this.cpf = cpf;
         this.cargo = cargo;
         this.institucao = institucao;
+        switch (cat){
+            case 1:
+                preco = 200;
+                cat_nome="Funcionário";
+                break;
+            case 2:
+                preco = 300;
+                cat_nome="Aluno";
+                break;
+            case 3:
+                preco = 150;
+                cat_nome="Professor";
+                break;
+        }
     }
 
     public int getId() {
@@ -45,25 +59,13 @@ public class Inscritos {
         this.cat = cat;
     }
 
-    public double getPreco() {
-        return preco;
-    }
+
 
     public void setPreco() {
-        switch (cat){
-            case 1:
-                preco = 200;
-                cat_nome="Funcionário";
-                break;
-            case 2:
-                preco = 300;
-                cat_nome="Aluno";
-                break;
-            case 3:
-                preco = 150;
-                cat_nome="Professor";
-                break;
-        }
+
+    }
+    public double getPreco() {
+        return preco;
     }
     public String getCpf() {
         return cpf;

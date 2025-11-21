@@ -84,10 +84,6 @@ public class Evento {
         return inscritos;
     }
 
-    public void setInscritos(Inscritos[] inscritos) {
-        this.inscritos = inscritos;
-    }
-
     public int getIndexSala() {
         return indexSala;
     }
@@ -130,5 +126,13 @@ public class Evento {
             else return false;
         }
         return false;
+    }
+
+    public double valorTotalIncritos(){
+        double valor=0;
+        for (Inscritos ins : inscritos){
+            valor+=ins.getPreco();
+        }
+        return valor;
     }
 }
