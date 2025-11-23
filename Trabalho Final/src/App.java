@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
+    private static List<Evento> eventos = new ArrayList<Evento>();
+    private static List<Sala> salas = new ArrayList<Sala>();
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        List<Evento> eventos = new ArrayList<Evento>();
-        List<Sala> salas = new ArrayList<Sala>();
         System.out.println("-----------");
         int p=0;
         do{
@@ -17,16 +17,18 @@ public class App {
                     eventos.add(criarEvento());
                     break;
                 case 2:
-
+                    selecionarEvento();
+                    break;
                 case 3:
 
                 case 4:
-                    salas.add(adicionarSala());
+                    criarSala();
                     break;
                 case 5:
             }
             System.out.print("Deseja realizar mais alguma ação (1-Sim | 2-Não)? ");
             p = in.nextInt();
+            System.out.println();
         }while (p == 1);
     }
 
@@ -35,9 +37,10 @@ public class App {
         System.out.println("1. Criar Evento.");
         System.out.println("2. Listar Evento.");
         System.out.println("3. Excluir Evento.");
-        System.out.println("4. Adicionar sala.");
-        System.out.println("5. Remover sala de evento.");
-        System.out.println("6. Remover inscrito de evento.");
+        System.out.println("4. Criar sala.");
+        System.out.println("5. Adicionar sala a um evento.");
+        System.out.println("6. Remover sala de evento.");
+        System.out.println("7. Remover inscrito de evento.");
         System.out.print("Sel: ");
     }
 
@@ -61,8 +64,20 @@ public class App {
             System.out.println("---------");
             evento.addIncritos(adicionarInscritos());
         }
-        System.out.printf("\nEvento de numero %d criado com sucesso.",evento.getCodigo());
-        System.out.printf("\nValor total por inscrito: %.1f",evento.valorTotalIncritos());
+
+        for (int i=0;i<salas.size();i++){
+            if (salas.get(i).getLotacao_max()>=quantidadeInscritos){
+                for (int j=0;j<quantidade;j++){
+                    System.out.printf("Selecione a %dª sala: \n",j+1);
+                    evento.addSala(selecionarSala());
+                }
+            }else {
+                System.out.println("Não a salas.");
+                return null;
+            }
+        }
+        System.out.printf("\nEvento de numero %d criado com sucesso.\n",evento.getCodigo());
+        System.out.printf("\nValor total por inscrito: R$%.1f\n",evento.valorTotalIncritos());
         return evento;
     }
 
@@ -81,15 +96,46 @@ public class App {
         return new Inscritos(nome,cat,cpf,cargo,instituicao);
     }
 
-    public static Sala adicionarSala(){
+    public static void criarSala(){
         Scanner in = new Scanner(System.in);
         System.out.print("Local: ");
-        String local = in.nextLine();
         in.next();
+        String local = in.nextLine();
         System.out.print("Locação maxima: ");
         int locacao = in.nextInt();
         System.out.print("Valor da locação: ");
         double valor = in.nextDouble();
-        return new Sala(local,locacao,valor);
+        Sala sl = new Sala(local,locacao,valor);
+        salas.add(sl);
+
+    }
+
+    public static Sala selecionarSala(){
+        Scanner in = new Scanner(System.in);
+        if (salas.isEmpty()) {
+            System.out.println("Nenhuma sala cadastrada.");
+            return null;
+        }
+        for (int i=0;i<salas.size();i++){
+            System.out.printf("%d. Sala: %d | Local: %s | Locação maxima: %d | Valor: %.1f\n", i+1, salas.get(i).getId(), salas.get(i).getLocal(),salas.get(i).getLotacao_max(),salas.get(i).getValor());
+        }
+        System.out.print("Selecione a sala: ");
+        int sel = in.nextInt();
+        return salas.get(sel-1);
+    }
+
+
+    public static Evento selecionarEvento(){
+        Scanner in = new Scanner(System.in);
+        if (eventos.isEmpty()) {
+            System.out.println("Nenhum evento cadastrado.");
+            return null;
+        }
+        for (int i=0;i<eventos.size();i++){
+            System.out.printf("%d. Evento: %s | código: %d | tipo: %s\n",i+1,eventos.get(i).getNome(),eventos.get(i).getCodigo(),eventos.get(i).getTipoEvento());
+        }
+        System.out.print("Selecione o evento: ");
+        int sel = in.nextInt();
+        return eventos.get(sel-1);
     }
 }

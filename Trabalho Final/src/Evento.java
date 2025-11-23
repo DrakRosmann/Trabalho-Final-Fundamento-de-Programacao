@@ -88,7 +88,7 @@ public class Evento {
         return indexSala;
     }
 
-    public void addSala(Sala sl,int quant) {
+    public void addSala(Sala sl) {
         sala[indexSala] = sl;
         indexSala++;
     }
