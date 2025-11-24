@@ -140,4 +140,30 @@ public class Evento {
         }
         return valor;
     }
+
+    public double valorTotalSala(){
+        double valor=0;
+        for (Sala sl : sala){
+            valor += sl.getValor();
+        }
+        return valor;
+    }
+
+    public void listarInscritos(){
+        for (Inscritos ins : inscritos){
+            System.out.println(ins.toString());
+        }
+    }
+
+    @Override
+    public String toString() {
+        String s ="";
+        for (int i=0;i<quantSalas;i++) {
+            s+=sala[i].toString()+"\n";
+        }
+        return "Evento: " + nome +
+                "\nCodigo: " + codigo +
+                "\nValor todal: R$" + valorTotalIncritos()+
+                "\nSalas reservadas: "+s;
+    }
 }

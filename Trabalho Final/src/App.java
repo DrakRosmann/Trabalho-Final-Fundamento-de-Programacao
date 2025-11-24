@@ -17,7 +17,7 @@ public class App {
                     eventos.add(criarEvento());
                     break;
                 case 2:
-                    selecionarEvento();
+                    System.out.println(selecionarEvento().toString());
                     break;
                 case 3:
 
@@ -25,8 +25,19 @@ public class App {
                     criarSala();
                     break;
                 case 5:
+                    listarSala();
+                    break;
+                case 6:
+                    selecionarEvento().listarInscritos();
+                    break;
+                case 7:
+                    removerInscrito();
+                    break;
+                case 8:
+                    adicionaInscrito();
+
             }
-            System.out.print("Deseja realizar mais alguma ação (1-Sim | 2-Não)? ");
+            System.out.print("\nDeseja realizar mais alguma ação (1-Sim | 2-Não)? ");
             p = in.nextInt();
             System.out.println();
         }while (p == 1);
@@ -38,9 +49,10 @@ public class App {
         System.out.println("2. Listar Evento.");
         System.out.println("3. Excluir Evento.");
         System.out.println("4. Criar sala.");
-        System.out.println("5. Adicionar sala a um evento.");
-        System.out.println("6. Remover sala de evento.");
+        System.out.println("5. Listar salas.");
+        System.out.println("6. Listar inscritos de um evento.");
         System.out.println("7. Remover inscrito de evento.");
+        System.out.println("8. Adicionar inscrito ao um evento.");
         System.out.print("Sel: ");
     }
 
@@ -56,7 +68,7 @@ public class App {
         String dataFim = in.next();
         System.out.print("Quantidade de salas necessarias: ");
         int quantidade = in.nextInt();
-        System.out.println("Quantidade de inscritos: ");
+        System.out.print("Quantidade de inscritos: ");
         int quantidadeInscritos = in.nextInt();
         Evento evento = new Evento(nome,tipoEvento,quantidade,dataInicio,dataFim,quantidadeInscritos);
         for (int i=0;i<quantidadeInscritos;i++){
@@ -66,18 +78,19 @@ public class App {
         }
 
         for (int i=0;i<salas.size();i++){
-            if (salas.get(i).getLotacao_max()>=quantidadeInscritos){
+            if (salas.get(i).getLotacao_max()>=quantidadeInscritos && !salas.get(i).isReservado()){
                 for (int j=0;j<quantidade;j++){
                     System.out.printf("Selecione a %dª sala: \n",j+1);
                     evento.addSala(selecionarSala());
                 }
             }else {
-                System.out.println("Não a salas.");
+                System.out.println("Não a salas disponiveis.");
                 return null;
             }
         }
         System.out.printf("\nEvento de numero %d criado com sucesso.\n",evento.getCodigo());
         System.out.printf("\nValor total por inscrito: R$%.1f\n",evento.valorTotalIncritos());
+        System.out.printf("\nValor total da locação: R$%.1f\n",evento.valorTotalSala());
         return evento;
     }
 
@@ -103,9 +116,9 @@ public class App {
         String local = in.nextLine();
         System.out.print("Locação maxima: ");
         int locacao = in.nextInt();
-        System.out.print("Valor da locação: ");
+        System.out.print("Valor da locação: R$");
         double valor = in.nextDouble();
-        Sala sl = new Sala(local,locacao,valor);
+        Sala sl = new Sala(local,locacao,valor,false);
         salas.add(sl);
 
     }
@@ -117,13 +130,26 @@ public class App {
             return null;
         }
         for (int i=0;i<salas.size();i++){
-            System.out.printf("%d. Sala: %d | Local: %s | Locação maxima: %d | Valor: %.1f\n", i+1, salas.get(i).getId(), salas.get(i).getLocal(),salas.get(i).getLotacao_max(),salas.get(i).getValor());
+            System.out.println((i+1)+". "+salas.get(i).toString());
         }
         System.out.print("Selecione a sala: ");
-        int sel = in.nextInt();
-        return salas.get(sel-1);
+        int sele = in.nextInt();
+        salas.get(sele -1).setReservado(true);
+        return salas.get(sele -1);
     }
 
+    public static void listarSala(){
+        if (salas.isEmpty()) {
+            System.out.println("Nenhuma sala cadastrada.");
+        }
+        for (int i=0;i<salas.size();i++){
+            if (salas.get(i).isReservado()){
+                System.out.println((i+1)+". "+salas.get(i).toString()+" Status: Reservado.");
+            }else {
+                System.out.println((i+1)+". "+salas.get(i).toString()+" Status: Não reservado");
+            }
+        }
+    }
 
     public static Evento selecionarEvento(){
         Scanner in = new Scanner(System.in);
@@ -137,5 +163,26 @@ public class App {
         System.out.print("Selecione o evento: ");
         int sel = in.nextInt();
         return eventos.get(sel-1);
+    }
+
+    public static void adicionaInscrito(){
+        Scanner in = new Scanner(System.in);
+        selecionarEvento().addIncritos(adicionarInscritos());
+    }
+
+    public static void removerInscrito(){
+        Scanner in = new Scanner(System.in);
+        if (eventos.isEmpty()) {
+            System.out.println("Nenhum evento cadastrado.");
+        }
+        for (int i=0;i<eventos.size();i++){
+            System.out.printf("%d. Evento: %s | código: %d | tipo: %s\n",i+1,eventos.get(i).getNome(),eventos.get(i).getCodigo(),eventos.get(i).getTipoEvento());
+        }
+        System.out.print("Selecione o evento: ");
+        int sel = in.nextInt();
+        eventos.get(sel-1).listarInscritos();
+        System.out.print("Qual selecione o ID da pessoa para remover: ");
+        int id = in.nextInt();
+        eventos.get(sel-1).removeInscrito(id);
     }
 }

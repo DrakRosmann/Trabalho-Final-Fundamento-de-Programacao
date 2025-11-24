@@ -85,4 +85,9 @@ public class Inscritos {
     public void setInstitucao(String institucao) {
         this.institucao = institucao;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome +" | Codigo: "+id+" | Categoria: " + cat+"\n";
+    }
 }

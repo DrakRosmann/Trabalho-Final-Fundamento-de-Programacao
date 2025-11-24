@@ -3,12 +3,14 @@ public class Sala {
     String local;
     int lotacao_max;
     double valor;
+    boolean reservado;
 
-    public Sala(String local, int lotacao_max, double valor) {
+    public Sala(String local, int lotacao_max, double valor,boolean reservado) {
         id++;
         this.local = local;
         this.lotacao_max = lotacao_max;
         this.valor = valor;
+        this.reservado = reservado;
     }
 
     public int getId() {
@@ -37,5 +39,18 @@ public class Sala {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public boolean isReservado() {
+        return reservado;
+    }
+
+    public void setReservado(boolean reservado) {
+        this.reservado = reservado;
+    }
+
+    @Override
+    public String toString() {
+        return "Sala: "+id+" | Local: "+local+" | Locação maxima: "+lotacao_max+" | Valor: R$"+valor;
     }
 }
