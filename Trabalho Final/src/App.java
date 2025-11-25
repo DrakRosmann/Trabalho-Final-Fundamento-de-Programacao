@@ -47,9 +47,9 @@ public class App {
                 default:
                     System.out.println("Opção inválida.");
             }
-            System.out.print("Gostaria de realizar mais alguma ação? (1-Sim | 2-Não) ");
+            System.out.print("\nGostaria de realizar mais alguma ação? (1-Sim | 2-Não) ");
             sel = in.nextInt();
-        } while (sel != 0);
+        } while (sel != 2);
     }
 
     public static void menu() {
@@ -260,4 +260,5 @@ public class App {
         System.out.println("Opção inválida.");
         return null;
     }
+
 }
